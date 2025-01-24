@@ -43,6 +43,15 @@ async _goToHome (){
      dialog.accept();
   });
 }
+
+async toggleElement(locator: Locator, desiredState: boolean = true): Promise<void> {
+  await locator.waitFor({ state: 'visible' });
+  const isChecked = await locator.isChecked();
+  if (isChecked !== desiredState) {
+    await locator.check({ force: true });
+  }
+}
+
 }
 
 

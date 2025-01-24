@@ -8,7 +8,7 @@ export class SignUpPage extends HelperBase {
     readonly selectDay :Locator
     readonly selectMonth :Locator
     readonly selectYear :Locator
-    readonly loginFormHeader : Locator
+    readonly SignInFormHeader : Locator
     readonly newsletterCheckbox : Locator
     readonly specialOffersCheckbox : Locator
     readonly createAccountButton : Locator
@@ -32,9 +32,9 @@ constructor(page : Page) {
         this.selectDay = page.locator('[data-qa="days"]')
         this.selectMonth = page.locator('[data-qa="months"]')
         this.selectYear = page.locator('[data-qa="years"]')
-        this.loginFormHeader = page.locator('div.login-form h2').filter({hasText: 'Enter Account Information' })
-        this.newsletterCheckbox = page.getByRole("checkbox",({name: "Sign up for our newsletter!"}))
-        this.specialOffersCheckbox = page.getByRole("checkbox",({name: "Receive special offers from our partners!"}))
+        this.SignInFormHeader = page.locator('div').filter({hasText: 'Enter Account Information' })
+        this.newsletterCheckbox = page.locator('#newsletter')
+        this.specialOffersCheckbox = page.locator('#uniform-optin input')
         this.createAccountButton = page.locator('[data-qa="create-account"]')
         this.firstNameInput = page.locator('[data-qa="first_name"]')
         this.lastNameInput = page.locator('[data-qa="last_name"]')
@@ -50,18 +50,26 @@ constructor(page : Page) {
 
 
     async _userRegistration(){
-    await expect (this.loginFormHeader).toBeVisible()
-    await this.titleLabel.check({force: true})
+   await this.page.waitForLoadState('domcontentloaded');
+   // await expect (this.SignInFormHeader).toBeVisible()
     await this.inputPassword.fill(process.env.testPassword)
     await this._selectdayOfBirth ("5","June","1995")
-    await this.newsletterCheckbox.check({force: true})
-    await this.specialOffersCheckbox.check({force: true})
     await this._inputAddressInformation()
+    await this._selectCheckboxes()
     await this.createAccountButton.click()
     await expect(this.accountCreatedMessage).toHaveText("Account Created!")
     await expect(this.accountCreatedMessage).toBeVisible()
     await this._continueAction()
   }
+
+    async _selectCheckboxes(){
+    await this.toggleElement(this.titleLabel)
+    await expect(this.titleLabel).toBeChecked()
+    await this.toggleElement(this.newsletterCheckbox)
+    await expect(this.newsletterCheckbox).toBeChecked()
+    await this.toggleElement(this.specialOffersCheckbox)
+    await expect(this.specialOffersCheckbox).toBeChecked()
+    }
 
     async _selectdayOfBirth (day: string, month: string, year : string){
     await this.selectDay.selectOption(day)

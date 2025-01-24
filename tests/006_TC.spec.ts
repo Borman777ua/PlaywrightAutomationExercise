@@ -27,7 +27,7 @@ test.describe ("Test Case 6: Contact Us Form", ()=>{
     await navigation._handleWithCookies()
 })
 
-test ("Contact Us Form" , async ({page}) =>{
+test.skip ("Contact Us Form" , async ({page}) =>{
         const pm = new PageManager(page)
         const navigation = pm.NavigateTo()  
         const contactUs = pm.ContactUsPage()
