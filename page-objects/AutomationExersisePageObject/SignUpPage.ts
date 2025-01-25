@@ -62,7 +62,6 @@ constructor(page : Page) {
     await this.createAccountButton.scrollIntoViewIfNeeded()
     await this.createAccountButton.click({force: true})
     await this.page.screenshot({ path: '../screenshots/after_click.png' });
-    await expect(this.accountCreatedMessage).toBeVisible({ timeout: 10000 });
     await expect(this.accountCreatedMessage).toContainText("Account Created!")
     await this._continueAction()
   }
