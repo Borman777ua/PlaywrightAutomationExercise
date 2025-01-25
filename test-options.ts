@@ -12,6 +12,13 @@ export const test = base.extend<TestOptions>({
 
 
     setupEnviroment : async({page}, use) =>{
+     await page.addStyleTag({
+      content: `
+        .adsbygoogle { display: none !important; }
+        iframe { display: none !important; }
+      `,
+    });
+
     await page.goto('/')
      await use('default') 
     },
