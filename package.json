@@ -6,6 +6,7 @@
     "ng": "ng",
     "start": "ng serve",
     "openUI": "npx playwright test --ui",
+    "navigation" : "npx playwright test navigation.spec.ts --project=chromium",
     "registration": "npx playwright test 1_TC.spec.ts --project=chromium",
     "runAll-Chrome": "npx playwright test --project=chromium --reporter=html --output=reports/chrome",
     "runAll-FireFox": "npx playwright test --project=firefox --reporter=html --output=reports/firefox",
