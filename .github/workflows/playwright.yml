@@ -31,27 +31,27 @@ jobs:
       # Step 5: Run Playwright tests
       - name: Run Playwright tests
         env:
-          BASE_PATH: ${{ secrets.BASE_PATH }}
+          BASE_PATH: ${{ vars.BASE_PATH }}
           invalidTestPassword: ${{ secrets.INVALIDTESTPASSWORD }}
           testCardNumber: ${{ secrets.TESTCARDNUMBER }}
-          testCity: ${{ secrets.TESTCITY }}
-          testCompany: ${{ secrets.TESTCOMPANY }}
-          testCountry: ${{ secrets.TESTCOUNTRY }}
+          testCity: ${{ vars.TESTCITY }}
+          testCompany: ${{ vars.TESTCOMPANY }}
+          testCountry: ${{ vars.TESTCOUNTRY }}
           testCVC: ${{ secrets.TESTCVC }}
-          testEmail: ${{ secrets.TESTEMAIL }}
-          testEmail2: ${{ secrets.TESTEMAIL2 }}
-          testEmail3: ${{ secrets.TESTEMAIL3 }}
-          testFirstName: ${{ secrets.TESTFIRSTNAME }}
-          testLastName: ${{ secrets.TESTLASTNAME }}
-          testMM: ${{ secrets.TESTMM }}
-          testMobileNumber: ${{ secrets.TESTMOBILENUMBER }}
-          testName: ${{ secrets.TESTNAME }}
-          testName2: ${{ secrets.TESTNAME2 }}
+          testEmail: ${{ vars.TESTEMAIL }}
+          testEmail2: ${{ vars.TESTEMAIL2 }}
+          testEmail3: ${{ vars.TESTEMAIL3 }}
+          testFirstName: ${{ vars.TESTFIRSTNAME }}
+          testLastName: ${{ vars.TESTLASTNAME }}
+          testMM: ${{ vars.TESTMM }}
+          testMobileNumber: ${{ vars.TESTMOBILENUMBER }}
+          testName: ${{ vars.TESTNAME }}
+          testName2: ${{ vars.TESTNAME2 }}
           testPassword: ${{ secrets.TESTPASSWORD }}
-          testStreet: ${{ secrets.TESTSTREET }}
+          testStreet: ${{ vars.TESTSTREET }}
           testYYYY: ${{ secrets.TESTYYYY }}
-          testZipCode: ${{ secrets.TESTZIPCODE }}
-          testState: ${{ secrets.TESTSTATE }}
+          testZipCode: ${{ vars.TESTZIPCODE }}
+          testState: ${{ vars.TESTSTATE }}
           
         run: npm run registration
 
