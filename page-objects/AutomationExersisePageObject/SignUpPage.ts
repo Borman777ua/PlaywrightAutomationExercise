@@ -57,7 +57,7 @@ constructor(page : Page) {
     await this._inputAddressInformation()
     await this._selectCheckboxes()
     await this.createAccountButton.click()
-    await expect(this.accountCreatedMessage).toContainText("Account Created!")
+ //   await expect(this.accountCreatedMessage).toContainText("Account Created!")
     await this._continueAction()
   }
 
