@@ -59,7 +59,7 @@ constructor(page : Page) {
     console.log("Waiting for create account button to be visible...");
     await expect(this.createAccountButton).toBeVisible() 
     console.log("Button is visible. Clicking...");
-    await this.createAccountButton.click()
+    await this.createAccountButton.click({force: true})
     await this.page.waitForLoadState('domcontentloaded');
     await expect(this.accountCreatedMessage).toBeVisible({ timeout: 10000 });
     await expect(this.accountCreatedMessage).toContainText("Account Created!")
