@@ -57,6 +57,7 @@ constructor(page : Page) {
     await this._inputAddressInformation()
     await this._selectCheckboxes()
     await this.createAccountButton.click()
+    await this.accountCreatedMessage.waitFor({ state: 'visible', timeout: 15000 });
     await expect(this.accountCreatedMessage).toHaveText("Account Created!")
     await expect(this.accountCreatedMessage).toBeVisible()
     await this._continueAction()
