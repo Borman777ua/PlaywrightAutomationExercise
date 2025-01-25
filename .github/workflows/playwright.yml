@@ -28,9 +28,8 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps --force
 
-      # Step 5: Use environment variables
-      # Define environment variables and make them available for the next steps
-      - name: Set Environment Variables
+      # Step 5: Run Playwright tests
+      - name: Run Playwright tests
         env:
           BASE_PATH: ${{ secrets.BASE_PATH }}
           invalidTestPassword: ${{ secrets.INVALIDTESTPASSWORD }}
@@ -53,13 +52,9 @@ jobs:
           testYYYY: ${{ secrets.TESTYYYY }}
           testZipCode: ${{ secrets.TESTZIPCODE }}
           testState: ${{ secrets.TESTSTATE }}
-        run: echo "Environment variables are set."
-
-      # Step 6: Run Playwright tests
-      - name: Run Playwright tests
         run: npm run registration
 
-      # Step 7: Upload Playwright test reports
+      # Step 6: Upload Playwright test reports
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
