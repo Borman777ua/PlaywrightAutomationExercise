@@ -35,7 +35,7 @@ constructor(page : Page) {
         this.SignInFormHeader = page.locator('div').filter({hasText: 'Enter Account Information' })
         this.newsletterCheckbox = page.locator('#newsletter')
         this.specialOffersCheckbox = page.locator('#uniform-optin input')
-        this.createAccountButton = page.locator('[data-qa="create-account"]')
+        this.createAccountButton = page.getByRole('button', { name: 'Create Account' })
         this.firstNameInput = page.locator('[data-qa="first_name"]')
         this.lastNameInput = page.locator('[data-qa="last_name"]')
         this.companyInput = page.locator('[data-qa="company"]')
