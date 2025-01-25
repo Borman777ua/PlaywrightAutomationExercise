@@ -1,27 +1,68 @@
 name: Playwright Tests
+
 on:
   push:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+
 jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
-      with:
-        node-version: lts/*
-    - name: Install dependencies
-      run: npm ci --force
-    - name: Install Playwright Browsers
-      run: npx playwright install --with-deps --force
-    - name: Run Playwright tests
-      run: npm run navigation
-    - uses: actions/upload-artifact@v4
-      if: ${{ !cancelled() }}
-      with:
-        name: playwright-report
-        path: playwright-report/
-        retention-days: 30
+      # Step 1: Checkout the repository
+      - uses: actions/checkout@v4
+
+      # Step 2: Set up Node.js
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm ci --force
+
+      # Step 4: Install Playwright browsers
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps --force
+
+      # Step 5: Use environment variables
+      # Define environment variables and make them available for the next steps
+      - name: Set Environment Variables
+        env:
+          BASE_PATH: ${{ secrets.BASE_PATH }}
+          invalidTestPassword: ${{ secrets.INVALIDTESTPASSWORD }}
+          testCardNumber: ${{ secrets.TESTCARDNUMBER }}
+          testCity: ${{ secrets.TESTCITY }}
+          testCompany: ${{ secrets.TESTCOMPANY }}
+          testCountry: ${{ secrets.TESTCOUNTRY }}
+          testCVC: ${{ secrets.TESTCVC }}
+          testEmail: ${{ secrets.TESTEMAIL }}
+          testEmail2: ${{ secrets.TESTEMAIL2 }}
+          testEmail3: ${{ secrets.TESTEMAIL3 }}
+          testFirstName: ${{ secrets.TESTFIRSTNAME }}
+          testLastName: ${{ secrets.TESTLASTNAME }}
+          testMM: ${{ secrets.TESTMM }}
+          testMobileNumber: ${{ secrets.TESTMOBILENUMBER }}
+          testName: ${{ secrets.TESTNAME }}
+          testName2: ${{ secrets.TESTNAME2 }}
+          testPassword: ${{ secrets.TESTPASSWORD }}
+          testStreet: ${{ secrets.TESTSTREET }}
+          testYYYY: ${{ secrets.TESTYYYY }}
+          testZipCode: ${{ secrets.TESTZIPCODE }}
+          testState: ${{ secrets.TESTSTATE }}
+        run: echo "Environment variables are set."
+
+      # Step 6: Run Playwright tests
+      - name: Run Playwright tests
+        run: npm run registration
+
+      # Step 7: Upload Playwright test reports
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
