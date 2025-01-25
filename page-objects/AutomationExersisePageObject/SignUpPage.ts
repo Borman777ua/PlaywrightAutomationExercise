@@ -55,13 +55,8 @@ constructor(page : Page) {
     await this._selectdayOfBirth ("5","June","1995")
     await this._inputAddressInformation()
     await this._selectCheckboxes()
-    console.log("Waiting for create account button to be visible...");
     await expect(this.createAccountButton).toBeVisible() 
-    console.log("Button is visible. Clicking...");
-    await this.page.screenshot({ path: '../screenshots/before_click.png' }); 
-    await this.createAccountButton.scrollIntoViewIfNeeded()
     await this.createAccountButton.click({force: true})
-    await this.page.screenshot({ path: '../screenshots/after_click.png' });
     await expect(this.accountCreatedMessage).toContainText("Account Created!")
     await this._continueAction()
   }
