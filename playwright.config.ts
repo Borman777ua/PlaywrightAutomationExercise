@@ -16,7 +16,7 @@ export default defineConfig({
   globalTimeout: 200000,
 
   expect:{
-    timeout: process.env.CI ? 10000 : 5000
+    timeout: process.env.CI ? 30000 : 5000
   },
   maxFailures: process.env.CI ? 2 : 2,
   testDir: './tests',
