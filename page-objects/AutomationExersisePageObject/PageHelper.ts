@@ -14,6 +14,9 @@ export class HelperBase {
 }
 
 async _handleWithCookies(){
+    if (process.env.CI) {
+        return;
+    }
     await this.page.getByLabel('Consent', { exact: true }).click();
 }
 
