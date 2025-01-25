@@ -50,7 +50,6 @@ constructor(page : Page) {
 
 
     async _userRegistration(){
-   await this.page.waitForLoadState('networkidle');
    // await expect (this.SignInFormHeader).toBeVisible()
     await this.inputPassword.fill(process.env.testPassword)
     await this._selectdayOfBirth ("5","June","1995")
@@ -59,10 +58,10 @@ constructor(page : Page) {
     console.log("Waiting for create account button to be visible...");
     await expect(this.createAccountButton).toBeVisible() 
     console.log("Button is visible. Clicking...");
-    await this.page.screenshot({ path: 'before_click.png' });
+    await this.page.screenshot({ path: '../screenshots/before_click.png' }); 
+    await this.createAccountButton.scrollIntoViewIfNeeded()
     await this.createAccountButton.click({force: true})
-    await this.page.screenshot({ path: 'after_click.png' });
-    await this.page.waitForLoadState('networkidle')
+    await this.page.screenshot({ path: '../screenshots/after_click.png' });
     await expect(this.accountCreatedMessage).toBeVisible({ timeout: 10000 });
     await expect(this.accountCreatedMessage).toContainText("Account Created!")
     await this._continueAction()
