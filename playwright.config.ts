@@ -33,6 +33,7 @@ export default defineConfig({
   
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
+     headless: true,
     /* Base URL to use in actions like `await page.goto('/')`. */
      baseURL: 'https://www.automationexercise.com',
 
