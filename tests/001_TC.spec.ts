@@ -1,5 +1,4 @@
-import { test } from "@playwright/test"
-import { PageManager } from "../page-objects/AutomationExersisePageObject/PageObjectManager"
+import { test } from '../test-options'
 
 /*
 Test Case 1: Register User
@@ -24,19 +23,13 @@ Test Case 1: Register User
 */
 
 test.describe("Test Case 1: Register User", ()=>{
-test.beforeEach (async({page}) =>{
-    const pm = new PageManager(page)
-    const navigation = pm.NavigateTo() 
-    await page.goto('/')
-    await navigation._handleWithCookies()
-})
 
-test('Register User', async ({page}) =>{
+
+test('Register User', async ({pageManager}) =>{
     const userName = process.env.testName
-    const pm = new PageManager(page)
-    const navigation = pm.NavigateTo() 
-    const login = pm.LoginPage()
-    const registration = pm.SignUpPage()
+    const navigation = pageManager.NavigateTo() 
+    const login = pageManager.LoginPage()
+    const registration = pageManager.SignUpPage()
     await navigation._navigateToLogin()
     await login._proceedToSignUp(process.env.testEmail,process.env.testName)
     await registration._userRegistration()

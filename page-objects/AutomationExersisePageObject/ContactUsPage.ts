@@ -11,6 +11,7 @@ readonly inputEmail : Locator
 readonly inputSubject : Locator 
 readonly inputText : Locator
 readonly submitButton : Locator
+readonly alertMessageBox :Locator
 
     
   constructor (page: Page){
@@ -22,11 +23,12 @@ readonly submitButton : Locator
         this.inputSubject = page.locator('[data-qa="subject"]')
         this.inputText = page.locator ('[data-qa="message"]')
         this.submitButton = page.locator('[data-qa="submit-button"]')
+        this.alertMessageBox = page.locator('div.status.alert.alert-success')
   }
 
 
   async _createMessage (name : string, email:string, subject:string,text:string){
-    const alertText = "Success! Your details have been submitted successfully."
+    const alertMessage = "Success! Your details have been submitted successfully."
     await expect (this.contactFormHeader).toBeVisible()
     await this._uploadFile('Folder.jpg')
     await this.inputName.fill(name)
@@ -34,9 +36,10 @@ readonly submitButton : Locator
     await this.inputSubject.fill(subject)
     await this.inputText.fill(text)
     await this.submitButton.click({force:true})
-    await this._verifyText('div.status alert alert-success', alertText )
+    await this._handleWithSingleDialog()
+    await expect(this.alertMessageBox).toBeVisible()
+    await expect(this.alertMessageBox).toContainText(alertMessage)
   }
-
 
  async _uploadFile(fileName: string): Promise<void> {
     const BasePath = path.resolve(process.env.BASE_PATH)

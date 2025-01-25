@@ -10,7 +10,7 @@ export class HelperBase {
     constructor (page: Page){
     this.page = page 
     this.continueButton = page.locator('a', {hasText: "Continue"})
-    this.goToHomeButton = page.locator('a.btn btn-success')
+    this.goToHomeButton = page.locator('a.btn.btn-success')
 }
 
 async _handleWithCookies(){
@@ -37,11 +37,12 @@ async _goToHome (){
     await expect(this.page).toHaveURL('/');
 }
 
- _handleWithSingleDialog() {
-  this.page.once('dialog', async (dialog) => {
-    console.log(`Dialog: ${dialog.message()}`);
-     dialog.accept();
+async _handleWithSingleDialog() {
+  this.page.once('dialog', dialog => {
+    console.log(`Dialog message: ${dialog.message()}`);
+    dialog.accept().catch(() => {});
   });
+  await this.page.getByRole('button', { name: 'Submit' }).click();
 }
 
 async toggleElement(locator: Locator, desiredState: boolean = true): Promise<void> {

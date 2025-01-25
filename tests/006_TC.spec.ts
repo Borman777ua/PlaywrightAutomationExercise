@@ -1,5 +1,4 @@
-import { test } from "@playwright/test"
-import { PageManager } from "../page-objects/AutomationExersisePageObject/PageObjectManager"
+import { test } from '../test-options'
 
 
 /*
@@ -19,18 +18,10 @@ Test Case 6: Contact Us Form
 
 
 test.describe ("Test Case 6: Contact Us Form", ()=>{
-        
-    test.beforeEach (async({page}) =>{
-    const pm = new PageManager(page)
-    const navigation = pm.NavigateTo() 
-    await page.goto('/')
-    await navigation._handleWithCookies()
-})
 
-test.skip ("Contact Us Form" , async ({page}) =>{
-        const pm = new PageManager(page)
-        const navigation = pm.NavigateTo()  
-        const contactUs = pm.ContactUsPage()
+test("Contact Us Form" , async ({pageManager}) =>{
+        const navigation = pageManager.NavigateTo()  
+        const contactUs = pageManager.ContactUsPage()
         await navigation._navigateToContactUs()
         await contactUs._createMessage("Freddie", "123@mail.com","Subject", "Lorem Ipsum")
         await contactUs._goToHome()

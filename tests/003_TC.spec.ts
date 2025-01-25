@@ -1,5 +1,4 @@
-import { test } from "@playwright/test"
-import { PageManager } from "../page-objects/AutomationExersisePageObject/PageObjectManager"
+import { test } from '../test-options'
 /*
 Test Case 3: Login User with incorrect email and password
 1. Launch browser
@@ -14,28 +13,18 @@ Test Case 3: Login User with incorrect email and password
 
 test.describe('Test Case 3: Login User with incorrect email and password', ()=>{
 
-
-    test.beforeEach (async({page}) =>{
-    const pm = new PageManager(page)
-    const navigation = pm.NavigateTo() 
-    await page.goto('/')
-    await navigation._handleWithCookies()
-})
-
-    test("Login User with invalid Email", async ({page})=>{
-       const pm = new PageManager(page)
-       const navigation = pm.NavigateTo()
-       const login = pm.LoginPage()
+    test("Login User with invalid Email", async ({pageManager})=>{
+       const navigation = pageManager.NavigateTo()
+       const login = pageManager.LoginPage()
        const alert = "Your email or password is incorrect!"
        await navigation._navigateToLogin()
        await login._proseedToLogIn(process.env.testEmail2, process.env.testPassword)
        await login._verifyAlertMessage(alert)
     })
 
-        test("Login User with invalid password", async ({page})=>{
-       const pm = new PageManager(page)
-       const navigation = pm.NavigateTo()
-       const login = pm.LoginPage()
+        test("Login User with invalid password", async ({pageManager})=>{
+       const navigation = pageManager.NavigateTo()
+       const login = pageManager.LoginPage()
        const alert = "Your email or password is incorrect!"
        await navigation._navigateToLogin()
        await login._proseedToLogIn(process.env.testEmail3, process.env.invalidTestPassword)

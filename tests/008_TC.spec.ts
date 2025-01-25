@@ -1,5 +1,4 @@
-import { test } from "@playwright/test"
-import { PageManager } from "../page-objects/AutomationExersisePageObject/PageObjectManager"
+import { test } from '../test-options'
 
 /*
 Test Case 8: Verify All Products and product detail page
@@ -16,18 +15,9 @@ Test Case 8: Verify All Products and product detail page
 
 test.describe ("Test Case 8: Verify All Products and product detail page", ()=>{
         
-    test.beforeEach (async({page}) =>{
-    const pm = new PageManager(page)
-    const navigation = pm.NavigateTo() 
-    await page.goto('/')
-    await navigation._handleWithCookies()
-})
-
-
-    test("Verify Products and Product Detail", async({page})=>{
-            const pm = new PageManager(page)
-            const navigation = pm.NavigateTo()
-            const productPage = pm.ProductPage()
+    test("Verify Products and Product Detail", async({pageManager})=>{
+            const navigation = pageManager.NavigateTo()
+            const productPage = pageManager.ProductPage()
             await  navigation._navigateToProducts()
             await  productPage._selectProductByNumber("1")
     })

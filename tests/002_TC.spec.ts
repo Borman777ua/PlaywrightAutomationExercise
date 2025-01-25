@@ -1,5 +1,5 @@
-import { test } from "@playwright/test"
-import { PageManager } from "../page-objects/AutomationExersisePageObject/PageObjectManager"
+import { test } from '../test-options'
+
 
 /*
 Test Case 2: Login User with correct email and password
@@ -15,23 +15,13 @@ Test Case 2: Login User with correct email and password
 10. Verify that 'ACCOUNT DELETED!' is visible
 */
 
-test.beforeEach (async({page}) =>{
-const pm = new PageManager(page)
-    const navigation = pm.NavigateTo() 
-    await page.goto('/')
-    await navigation._handleWithCookies()
-}) 
 
 test.describe.serial('Test Case 2: Login User with correct email and password', ()=> {
-
-
-
-    test("Step 1: Register a new User", async ({page})=>{
+    test("Step 1: Register a new User", async ({pageManager})=>{
     const userName = process.env.testName2
-    const pm = new PageManager(page)
-    const navigation = pm.NavigateTo() 
-    const login = pm.LoginPage()
-    const registration = pm.SignUpPage()
+    const navigation = pageManager.NavigateTo() 
+    const login = pageManager.LoginPage()
+    const registration = pageManager.SignUpPage()
     await navigation._navigateToLogin()
     await login._proceedToSignUp(process.env.testEmail2,process.env.testName2)
     await registration._userRegistration(userName)
@@ -39,10 +29,9 @@ test.describe.serial('Test Case 2: Login User with correct email and password', 
 })
 
 
-test("Step 2 : Login with Valid email and password", async ({page})=>{
-    const pm = new PageManager(page)
-        const navigation = pm.NavigateTo() 
-        const login = pm.LoginPage()
+test("Step 2 : Login with Valid email and password", async ({pageManager})=>{
+        const navigation = pageManager.NavigateTo() 
+        const login = pageManager.LoginPage()
         await navigation._navigateToLogin()
         await login._proseedToLogIn(process.env.testEmail2,process.env.testPassword)
         await navigation._checkUserIsLoggedIn(process.env.testName2)

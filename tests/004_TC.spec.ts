@@ -1,5 +1,4 @@
-import { test } from "@playwright/test"
-import { PageManager } from "../page-objects/AutomationExersisePageObject/PageObjectManager"
+import { test } from '../test-options'
 
 /*
 Test Case 4: Logout User
@@ -19,24 +18,12 @@ Test Case 4: Logout User
 
 test.describe('Test Case 4: Logout User', ()=>{
     
-    
-    test.beforeEach (async({page}) =>{
-    const pm = new PageManager(page)
-    const navigation = pm.NavigateTo() 
-    await page.goto('/')
-    await navigation._handleWithCookies()
-})
 
-
-test('Login and Log out', async({page})=>{
-    const pm = new PageManager(page)
-    const navigation = pm.NavigateTo() 
-    const login = pm.LoginPage()
+test('Login and Log out', async({pageManager})=>{
+    const navigation = pageManager.NavigateTo() 
+    const login = pageManager.LoginPage()
     await navigation._navigateToLogin()
     await login._proseedToLogIn(process.env.testEmail3, process.env.testPassword)
     await navigation._navigateToLogout()
 })
-
-
-
 })

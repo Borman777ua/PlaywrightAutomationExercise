@@ -1,5 +1,5 @@
-import { test } from "@playwright/test"
-import { PageManager } from "../page-objects/AutomationExersisePageObject/PageObjectManager"
+
+import { test } from '../test-options'
 
 /*
 Test Case 7: Verify Test Cases Page
@@ -11,17 +11,9 @@ Test Case 7: Verify Test Cases Page
 */
 
 test.describe ("Test Case 7: Verify Test Cases Page", ()=>{
-        
-    test.beforeEach (async({page}) =>{
-    const pm = new PageManager(page)
-    const navigation = pm.NavigateTo() 
-    await page.goto('/')
-    await navigation._handleWithCookies()
-})
 
-    test('Navigation',async ({page}) => {
-    const pm = new PageManager(page)
-    const navigation = pm.NavigateTo()
+    test('Navigation',async ({pageManager}) => {
+    const navigation = pageManager.NavigateTo()
     await navigation._navigateToTestCases()
     })
 })

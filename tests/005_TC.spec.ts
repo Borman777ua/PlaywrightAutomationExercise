@@ -1,6 +1,4 @@
-import { test } from "@playwright/test"
-import { PageManager } from "../page-objects/AutomationExersisePageObject/PageObjectManager"
-
+import { test } from '../test-options'
 
 /*
 Test Case 5: Register User with existing email
@@ -16,18 +14,10 @@ Test Case 5: Register User with existing email
 
 test.describe('Test Case 5: Register User with existing email', ()=>{
     
-    
-    test.beforeEach (async({page}) =>{
-    const pm = new PageManager(page)
-    const navigation = pm.NavigateTo() 
-    await page.goto('/')
-    await navigation._handleWithCookies()
-})
 
-    test("Register existing user", async ({page})=>{
-       const pm = new PageManager(page)
-       const navigation = pm.NavigateTo()
-       const login = pm.LoginPage()
+    test("Register existing user", async ({pageManager})=>{
+       const navigation = pageManager.NavigateTo()
+       const login = pageManager.LoginPage()
        const alert = "Email Address already exist!"
        await navigation._navigateToLogin()
        await login._proceedToSignUp(process.env.testEmail3, process.env.testPassword)
