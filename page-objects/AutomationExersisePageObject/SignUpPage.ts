@@ -50,8 +50,9 @@ constructor(page : Page) {
 
 
     async _userRegistration(){
-   await this.page.waitForLoadState('domcontentloaded');
+   await this.page.waitForLoadState('load');
    // await expect (this.SignInFormHeader).toBeVisible()
+   console.log('testPassword:', process.env.testPassword)
     await this.inputPassword.fill(process.env.testPassword)
     await this._selectdayOfBirth ("5","June","1995")
     await this._inputAddressInformation()

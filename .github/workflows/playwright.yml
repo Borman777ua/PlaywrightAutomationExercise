@@ -52,6 +52,7 @@ jobs:
           testYYYY: ${{ secrets.TESTYYYY }}
           testZipCode: ${{ secrets.TESTZIPCODE }}
           testState: ${{ secrets.TESTSTATE }}
+          
         run: npm run registration
 
       # Step 6: Upload Playwright test reports
