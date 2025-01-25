@@ -20,13 +20,24 @@ jobs:
         with:
           node-version: lts/*
 
-      # Step 3: Install dependencies
-      - name: Install dependencies
-        run: npm ci --force
+   # Cache Node.js dependencies and Playwright browsers
+      - name: Cache Node.js modules and Playwright browsers
+        uses: actions/cache@v3
+        with:
+          path: |
+            node_modules
+            ~/.cache/ms-playwright
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
-      # Step 4: Install Playwright browsers
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps --force
+      # Install dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # Install Playwright browsers if they are not cached
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
 
       # Step 5: Run Playwright tests
       - name: Run Playwright tests
@@ -53,7 +64,7 @@ jobs:
           testZipCode: ${{ vars.TESTZIPCODE }}
           testState: ${{ vars.TESTSTATE }}
           
-        run: npm run runAll-Chrome
+        run: npm run registration
 
       # Step 6: Upload Playwright test reports
       - uses: actions/upload-artifact@v4
