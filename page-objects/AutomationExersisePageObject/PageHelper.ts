@@ -52,7 +52,7 @@ async toggleElement(locator: Locator, desiredState: boolean = true): Promise<voi
   await locator.waitFor({ state: 'visible' });
   const isChecked = await locator.isChecked();
   if (isChecked !== desiredState) {
-    await locator.check({ force: true });
+    await locator.check();
   }
 }
 
