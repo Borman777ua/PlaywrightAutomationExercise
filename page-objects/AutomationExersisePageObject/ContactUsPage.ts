@@ -28,7 +28,6 @@ readonly alertMessageBox :Locator
 
 
   async _createMessage (name : string, email:string, subject:string,text:string){
-    const alertMessage = "Success! Your details have been submitted successfully."
     await expect (this.contactFormHeader).toBeVisible()
     await this._uploadFile('Folder.jpg')
     await this.inputName.fill(name)
@@ -37,6 +36,10 @@ readonly alertMessageBox :Locator
     await this.inputText.fill(text)
     await this.submitButton.click({force:true})
     await this._handleWithSingleDialog()
+  }
+
+  async _verifyMessageBox(){
+   const alertMessage = "Success! Your details have been submitted successfully."
     await expect(this.alertMessageBox).toBeVisible()
     await expect(this.alertMessageBox).toContainText(alertMessage)
   }

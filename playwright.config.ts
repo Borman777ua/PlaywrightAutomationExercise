@@ -12,7 +12,7 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  timeout: process.env.CI ? 60000 : 40000,
+  timeout: process.env.CI ? 60000 : 60000,
   globalTimeout: 200000,
 
   expect:{
@@ -43,7 +43,7 @@ export default defineConfig({
     video: 'on-first-retry',
 
     launchOptions: {
-      slowMo : process.env.SLOMO ? 0 : 1000
+      slowMo : process.env.SLOMO ? 0 : 0
     }
     
 

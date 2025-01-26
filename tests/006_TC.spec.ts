@@ -19,11 +19,13 @@ Test Case 6: Contact Us Form
 
 test.describe ("Test Case 6: Contact Us Form", ()=>{
 
+
 test("Contact Us Form" , async ({pageManager}) =>{
         const navigation = pageManager.NavigateTo()  
         const contactUs = pageManager.ContactUsPage()
         await navigation._navigateToContactUs()
         await contactUs._createMessage("Freddie", "123@mail.com","Subject", "Lorem Ipsum")
+        await contactUs._verifyMessageBox()
         await contactUs._goToHome()
 })
 })

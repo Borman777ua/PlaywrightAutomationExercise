@@ -1,12 +1,12 @@
-version: '3'  # Use '3' for better compatibility
+version: '3.9'  # Use '3' for better compatibility
 
 services:  
-  playwright-test:  # The service name (no spaces)
-    image: playwright-test  # Docker image name
+  playwright-test:  
+    image: playwright-test  
     build:
       context: .  # Build the Docker image from the current directory
       dockerfile: ./Dockerfile  # Path to the Dockerfile
-    command: npm run registration  # Command to run inside the container
+    command: npm run runAll-Chrome  # Command to run inside the container
     volumes:
       - ./playwright-report/:/app/playwright-report  # Local to container mapping for reports
       - ./test-results/:/app/test-results 

@@ -6,8 +6,8 @@
     "ng": "ng",
     "start": "ng serve",
     "openUI": "npx playwright test --ui",
-    "navigation" : "npx playwright test navigation.spec.ts --project=chromium",
-    "registration": "npx playwright test 1_TC.spec.ts --project=chromium",
+    "navigation": "npx playwright test navigation.spec.ts --project=chromium",
+    "registration": "npx playwright test 001_TC.spec.ts --project=chromium",
     "runAll-Chrome": "npx playwright test --project=chromium --reporter=html --output=reports/chrome",
     "runAll-FireFox": "npx playwright test --project=firefox --reporter=html --output=reports/firefox",
     "test": "npx playwright test",
@@ -20,7 +20,7 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "^19.1.2",
     "@angular/cli": "^19.1.2",
-    "@playwright/test": "^1.49.1",
+    "@playwright/test": "^1.50.0",
     "@types/node": "^22.10.2",
     "concurrently": "^9.1.2",
     "dotenv": "^16.4.7"
