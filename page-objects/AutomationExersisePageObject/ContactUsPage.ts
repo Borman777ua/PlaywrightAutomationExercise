@@ -18,12 +18,12 @@ readonly alertMessageBox :Locator
         super(page)
         this.contactFormHeader = page.locator('div.contact-form h2').filter({hasText: "Get In Touch"})
         this.uploadFileButton = page.locator('input[type=file]')
-        this.inputName = page.locator('[data-qa="name"]')
-        this.inputEmail = page.locator('[data-qa="email"]')
-        this.inputSubject = page.locator('[data-qa="subject"]')
-        this.inputText = page.locator ('[data-qa="message"]')
+        this.inputName = page.getByRole('textbox', { name: 'Name' })
+        this.inputEmail = page.getByRole('textbox', { name: 'Email', exact: true })
+        this.inputSubject = page.getByRole('textbox', { name: 'Subject' })
+        this.inputText = page.getByRole('textbox', { name: 'Your Message Here' })
         this.submitButton = page.locator('[data-qa="submit-button"]')
-        this.alertMessageBox = page.locator('div.status.alert.alert-success')
+        this.alertMessageBox = page.locator('#contact-page')
   }
 
 

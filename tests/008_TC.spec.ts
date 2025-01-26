@@ -20,8 +20,11 @@ test.describe ("Test Case 8: Verify All Products and product detail page", ()=>{
             const productPage = pageManager.ProductPage()
             await  navigation._navigateToProducts()
             await  productPage._selectProductByNumber("1")
+            await productPage._verifyProductDetails(
+                "Blue Top", 
+                "Category:", 
+                "Availability:",
+                 "Condition:",
+                 "Brand:")
     })
-
-
-
 })

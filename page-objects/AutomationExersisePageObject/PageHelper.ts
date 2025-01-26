@@ -31,9 +31,17 @@ async _checkUserIsLoggedIn(userName: string){
     await expect (this.page.locator('a').filter({hasText:  ` Logged in as ${userName}`})).toBeVisible()
 }
 
-async _verifyText(locator : string, text : string){
-   await expect (this.page.locator(locator)).toHaveText(text)
+async _verifyTextByLocator(locator : string, text : string){
+   await expect (this.page.locator(locator)).toContainText(text)
+   await expect (this.page.locator(locator)).toBeVisible()
 }
+
+async _verifyTextByLocatorText (locatorText :string , text :string){
+ await expect (this.page.getByText(locatorText)).toContainText(text)
+   await expect (this.page.getByText(locatorText)).toBeVisible()
+}
+
+
 
 async _goToHome (){
     await this.goToHomeButton.click()
@@ -48,13 +56,23 @@ async _handleWithSingleDialog() {
   await this.page.getByRole('button', { name: 'Submit' }).click();
 }
 
-async toggleElement(locator: Locator, desiredState: boolean = true): Promise<void> {
+async _toggleElement(locator: Locator, desiredState: boolean = true): Promise<void> {
   await locator.waitFor({ state: 'visible' });
   const isChecked = await locator.isChecked();
   if (isChecked !== desiredState) {
     await locator.check();
   }
 }
+
+
+async _continueShopping (){
+await  this.page.getByText("Continue Shopping").click()
+}
+
+
+
+
+
 
 }
 

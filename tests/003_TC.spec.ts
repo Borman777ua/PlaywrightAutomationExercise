@@ -18,7 +18,7 @@ test.describe('Test Case 3: Login User with incorrect email and password', ()=>{
        const login = pageManager.LoginPage()
        const alert = "Your email or password is incorrect!"
        await navigation._navigateToLogin()
-       await login._proseedToLogIn(process.env.testEmail2, process.env.testPassword)
+       await login._proseedToLogIn("invalidEmail@mail.com", process.env.testPassword)
        await login._verifyAlertMessage(alert)
     })
 
@@ -27,7 +27,7 @@ test.describe('Test Case 3: Login User with incorrect email and password', ()=>{
        const login = pageManager.LoginPage()
        const alert = "Your email or password is incorrect!"
        await navigation._navigateToLogin()
-       await login._proseedToLogIn(process.env.testEmail3, process.env.invalidTestPassword)
+       await login._proseedToLogIn("invalidEmail@mail.com", process.env.invalidTestPassword)
        await login._verifyAlertMessage(alert)
     })
 })

@@ -1,5 +1,7 @@
 import { Page } from "@playwright/test"
+import { CartPage } from "./CartPage"
 import { ContactUsPage } from "./ContactUsPage"
+import { HomePage } from "./HomePage"
 import { LoginPage } from "./LoginPage"
 import { Navigation } from "./Navigation"
 import { ProductPage } from "./ProductsPage"
@@ -13,6 +15,8 @@ export class PageManager {
     private readonly signUpPage : SignUpPage
     private readonly contactUsPage : ContactUsPage
     private readonly productPage : ProductPage 
+    private readonly homePage : HomePage
+    private readonly cartPage : CartPage
 
 
 
@@ -23,6 +27,8 @@ export class PageManager {
    this.signUpPage = new SignUpPage (this.page)
    this.contactUsPage = new ContactUsPage(this.page)
    this.productPage = new ProductPage(this.page)
+   this.homePage = new HomePage(this.page)
+   this.cartPage = new CartPage(this.page)
  }
 
 
@@ -42,5 +48,13 @@ export class PageManager {
  }
  ProductPage (){
    return this.productPage
+ }
+
+ HomePage (){
+   return this.homePage
+ }
+
+ CartPage(){
+   return this.cartPage
  }
 }

@@ -10,7 +10,8 @@
     "registration": "npx playwright test 1_TC.spec.ts --project=chromium",
     "runAll-Chrome": "npx playwright test --project=chromium --reporter=html --output=reports/chrome",
     "runAll-FireFox": "npx playwright test --project=firefox --reporter=html --output=reports/firefox",
-    "runAll": "npm run runAll-Chrome & npm run runAll-FireFox"
+    "test": "npx playwright test",
+    "slowTestRun": "npx playwright test --headed --project=chromium --workers=1"
   },
   "keywords": [],
   "author": "",

@@ -43,6 +43,6 @@ export class LoginPage extends HelperBase {
     await this.loginButton.click()
   }
   async _verifyAlertMessage (message: string){
-    await this._verifyText('p[style="color: red;"]', message)
+    await this._verifyTextByLocator('p[style="color: red;"]', message)
   }
 }

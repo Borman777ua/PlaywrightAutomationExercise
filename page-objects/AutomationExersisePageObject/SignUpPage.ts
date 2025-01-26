@@ -62,11 +62,11 @@ constructor(page : Page) {
   }
 
     async _selectCheckboxes(){
-    await this.toggleElement(this.titleLabel)
+    await this._toggleElement(this.titleLabel)
     await expect(this.titleLabel).toBeChecked()
-    await this.toggleElement(this.newsletterCheckbox)
+    await this._toggleElement(this.newsletterCheckbox)
     await expect(this.newsletterCheckbox).toBeChecked()
-    await this.toggleElement(this.specialOffersCheckbox)
+    await this._toggleElement(this.specialOffersCheckbox)
     await expect(this.specialOffersCheckbox).toBeChecked()
     }
 
